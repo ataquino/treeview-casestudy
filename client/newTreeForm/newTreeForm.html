@@ -1,0 +1,34 @@
+<template name="newTreeForm">
+
+
+  {{#autoForm collection="Trees" id="newTreeForm" type="insert" doc=getDoc}}
+  <fieldset>
+    {{> afFieldInput name="name" placeholder="schemaLabel"}}
+    <ul>
+      {{#with getParent}} {{> newNodeForm}} {{/with}}
+    </ul>
+  </fieldset>
+
+  <br/>
+  <button type="submit">Submit</button>
+  {{/autoForm}}
+
+
+</template>
+
+
+<template name="newNodeForm">
+
+  <li>
+    <div>
+      {{> afQuickField name=getNodeIdName value=nodeId}}
+      {{> afQuickField name=getParentIdName value=parentId}}
+      {{> afQuickField name=getTextName rows=2}}
+      <button type="button" class="btn-add-child" data-node-id="{{nodeId}}">Add Child</button>
+    </div>
+    <ul>
+      {{#each getChildren}} {{> newNodeForm }} {{/each}}
+    </ul>
+  </li>
+
+</template>
