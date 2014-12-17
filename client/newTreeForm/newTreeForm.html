@@ -1,9 +1,9 @@
 <template name="newTreeForm">
 
 
-  {{#autoForm collection="Trees" id="newTreeForm" type="insert" doc=getDoc}}
+  {{#autoForm collection="Trees" id="newTreeForm" type=getFormType doc=getDoc}}
   <fieldset>
-    {{> afFieldInput name="name" placeholder="schemaLabel"}}
+    {{> afQuickField name="name" placeholder="schemaLabel"}}
     <ul>
       {{#with getParent}} {{> newNodeForm}} {{/with}}
     </ul>
@@ -19,16 +19,18 @@
 
 <template name="newNodeForm">
 
+  {{#if isChild}}
   <li>
     <div>
       {{> afQuickField name=getNodeIdName value=nodeId}}
       {{> afQuickField name=getParentIdName value=parentId}}
-      {{> afQuickField name=getTextName rows=2}}
+      {{> afQuickField name=getTextName rows=2 placeholder="schemaLabel"}}
       <button type="button" class="btn-add-child" data-node-id="{{nodeId}}">Add Child</button>
+      <button type="button" class="btn-remove-child" data-node-id="{{nodeId}}">Remove Child</button>
     </div>
     <ul>
       {{#each getChildren}} {{> newNodeForm }} {{/each}}
     </ul>
   </li>
-
+  {{/if}}
 </template>

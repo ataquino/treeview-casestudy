@@ -15,7 +15,8 @@ Schema.Node = new SimpleSchema({
     }
   },
   text: {
-    type: String
+    type: String,
+    label: "Text"
   }
 });
 

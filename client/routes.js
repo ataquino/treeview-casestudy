@@ -4,7 +4,7 @@ Router.route("/", function() {
     nodes: [
     {
       nodeId: Date.now(),
-      parentId: 1,
+      parentId: 0,
       text: "node pai"
     }
     ]
